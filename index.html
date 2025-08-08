@@ -1,129 +1,24 @@
 <!DOCTYPE html>
-<html lang="fa">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>صفحه معرفی شخصی</title>
-  <style>
-    body {
-      font-family: 'Tahoma', sans-serif;
-      background: #f3f4f6;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      direction: rtl;
-    }
-
-    header {
-      background-color: #4f46e5;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-    }
-
-    header img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid white;
-      margin-top: 15px;
-    }
-
-    main {
-      padding: 30px 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    h2 {
-      color: #4f46e5;
-      margin-bottom: 10px;
-    }
-
-    .skills ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .skills li {
-      background: #e0e7ff;
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 8px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    .contact-form button {
-      background-color: #4f46e5;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    footer {
-      background-color: #e5e7eb;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1> محمد صابر خزاعی</h1>
-    <img src="my_photo.jpeg" alt="عکس پروفایل">
-  </header>
-
-  <main>
-    <section class="about">
-      <h2>درباره من</h2>
-      <p>
-        متولد ۱۳۸۳ <br> 2 سال نیم هستش که backen developer  و در ابتدا در شرکت kaytu که در حوضه cloud computing هستش مشغول کار بودم و بعد و ۱ سال هستش که در پیام رسان بله مشغول کار هستم.
-      </p>
-    </section>
-
-
-    <section class="skills">
-      <h2>مهارت‌ها</h2>
-      <ul>
-        <li>Golang</li>
-        <li>python</li>
-        <li>Kubernetes</li>
-      </ul>
-    </section>
-
-    <section class="contact">
-      <h2>تماس با من</h2>
-      <form class="contact-form">
-        <label for="name">نام:</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="email">ایمیل:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="message">پیام:</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-
-        <button type="submit">ارسال</button>
-      </form>
-    </section>
-  </main>
-
-</body>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>فروشگاه آنلاین</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      body { font-family: Tahoma, sans-serif; margin: 20px; }
+      ul { list-style: none; padding: 0; }
+      li { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+      img { display: block; margin-bottom: 10px; }
+      form { max-width: 300px; margin: auto; }
+      input { width: 100%; padding: 8px; margin: 5px 0; }
+      button { padding: 8px 12px; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel" src="app.js"></script>
+  </body>
 </html>
