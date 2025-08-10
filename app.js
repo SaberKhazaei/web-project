@@ -76,7 +76,7 @@ const App = () => {
       <div>
         <button onClick={() => setSelected(null)}>بازگشت</button>
         <h2>{selected.name}</h2>
-        <img src={selected.imageUrl} width="150" />
+        <img src={selected.imageUrl} style={{ maxWidth: '400px', width: '100%' }} />
         <p>{selected.description}</p>
         <div>{selected.price} تومان</div>
         <button onClick={addToCart}>افزودن به سبد خرید</button>
