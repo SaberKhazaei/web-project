@@ -29,24 +29,21 @@ function Login() {
   };
 
   return (
-    <div className="login-wrapper">
-      <img src="my_photo.jpeg" alt="login" className="login-image" />
-      <form onSubmit={submit} className="login-form">
-        <input
-          placeholder="نام کاربری"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="رمز عبور"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-        <button type="submit">ورود</button>
-        {error && <p>{error}</p>}
-      </form>
-    </div>
+    <form onSubmit={submit} className="login-form">
+      <input
+        placeholder="نام کاربری"
+        value={username}
+        onChange={e => setUsername(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="رمز عبور"
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+      />
+      <button type="submit">ورود</button>
+      {error && <p>{error}</p>}
+    </form>
   );
 }
 
