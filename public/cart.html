@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>سبد خرید</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <style>
+    body { font-family: Tahoma, sans-serif; direction: rtl; padding: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; }
+    .product { border: 1px solid #ccc; padding: 10px; border-radius: 8px; text-align: center; }
+    .product img { max-width: 100%; height: auto; }
+    .total { margin-top: 20px; text-align: center; }
+    .total button { margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="cart.js"></script>
+</body>
+</html>
