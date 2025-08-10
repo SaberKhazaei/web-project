@@ -21,6 +21,10 @@ function Products() {
     window.location.href = '/';
   };
 
+  const viewCart = () => {
+    window.location.href = '/cart.html';
+  };
+
   const viewProduct = id => {
     window.location.href = `/product.html?id=${id}`;
   };
@@ -28,6 +32,7 @@ function Products() {
   return (
     <div>
       <button onClick={logout}>خروج</button>
+      <button onClick={viewCart}>سبد خرید</button>
       <h2>محصولات</h2>
       <div className="grid">
         {products.map(p => (

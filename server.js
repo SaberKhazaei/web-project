@@ -122,5 +122,14 @@ app.get('/api/cart', authMiddleware, async (req, res) => {
   res.json(user.cart);
 });
 
+// Remove a product from the authenticated user's cart
+app.delete('/api/cart/:productId', authMiddleware, async (req, res) => {
+  const user = await User.findById(req.user.id);
+  const { productId } = req.params;
+  user.cart = user.cart.filter(id => id.toString() !== productId);
+  await user.save();
+  res.json({ message: 'removed from cart' });
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
