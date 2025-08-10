@@ -95,21 +95,31 @@ app.get('/api/products', async (req, res) => {
   res.json(products);
 });
 
+// Get a single product by id
 app.get('/api/products/:id', async (req, res) => {
-  const product = await Product.findById(req.params.id);
-  if (!product) return res.status(404).json({ message: 'not found' });
-  res.json(product);
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) return res.status(404).json({ message: 'not found' });
+    res.json(product);
+  } catch (err) {
+    res.status(400).json({ message: 'invalid id' });
+  }
 });
 
+// Add a product to the authenticated user's cart
 app.post('/api/cart', authMiddleware, async (req, res) => {
   const { productId } = req.body;
+  if (!productId) return res.status(400).json({ message: 'productId required' });
   const user = await User.findById(req.user.id);
-  if (!user) return res.status(404).json({ message: 'user not found' });
-  if (!user.cart.includes(productId)) {
-    user.cart.push(productId);
-    await user.save();
-  }
+  user.cart.push(productId);
+  await user.save();
   res.json({ message: 'added to cart' });
+});
+
+// Get the authenticated user's cart
+app.get('/api/cart', authMiddleware, async (req, res) => {
+  const user = await User.findById(req.user.id).populate('cart');
+  res.json(user.cart);
 });
 
 const PORT = process.env.PORT || 3000;
