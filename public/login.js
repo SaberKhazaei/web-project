@@ -12,14 +12,19 @@ function Login() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password })
     })
-      .then(res => res.json())
-      .then(data => {
-        if (data.token) {
+      .then(async res => {
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.token) {
           localStorage.setItem('token', data.token);
           window.location.href = '/products.html';
         } else {
+          console.error('Login failed', res.status, data);
           setError('ورود ناموفق بود');
         }
+      })
+      .catch(err => {
+        console.error('Login request error', err);
+        setError('ورود ناموفق بود');
       });
   };
 
