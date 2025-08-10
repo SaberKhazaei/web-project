@@ -3,7 +3,7 @@
 This project is an MVP for an online store. It includes:
 
 - Product listing page built with React
-- User registration and login using JWT
+- User registration and login using JWT. Logging in with a new username automatically creates the account
 - Express.js backend with MongoDB via Mongoose
 
 ## Development
