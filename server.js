@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secret';
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/webstore';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://0.0.0.0:27017/webstore';
 
 mongoose.connect(MONGO_URI)
   .then(() => {

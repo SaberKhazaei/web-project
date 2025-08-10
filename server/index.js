@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secretkey';
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/shop';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://0.0.0.0:27017/shop';
 
 mongoose.connect(MONGO_URI).then(async () => {
   console.log('Mongo connected');
