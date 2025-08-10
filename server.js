@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const path = require('path');
 const Product = require('./models/Product');
 const User = require('./models/User');
 
@@ -10,6 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
+app.use('/images', express.static(path.join(__dirname, 'product_test_image')));
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secret';
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://0.0.0.0:27017/webstore';
@@ -24,14 +26,14 @@ mongoose.connect(MONGO_URI)
 async function seedProducts() {
   const count = await Product.countDocuments();
   if (count === 0) {
-    await Product.insertMany([
-      { name: 'Product 1', price: 10, imageUrl: 'https://via.placeholder.com/150', description: 'Sample product 1' },
-      { name: 'Product 2', price: 20, imageUrl: 'https://via.placeholder.com/150', description: 'Sample product 2' },
-      { name: 'Product 3', price: 30, imageUrl: 'https://via.placeholder.com/150', description: 'Sample product 3' },
+      await Product.insertMany([
+      { name: 'Product 1', price: 10, imageUrl: '/images/product1.jpeg', description: 'Sample product 1' },
+      { name: 'Product 2', price: 20, imageUrl: '/images/product2.jpeg', description: 'Sample product 2' },
+      { name: 'Product 3', price: 30, imageUrl: '/images/product3.jpeg', description: 'Sample product 3' },
       { name: 'Product 4', price: 40, imageUrl: 'https://via.placeholder.com/150', description: 'Sample product 4' },
       { name: 'Product 5', price: 50, imageUrl: 'https://via.placeholder.com/150', description: 'Sample product 5' },
       { name: 'Product 6', price: 60, imageUrl: 'https://via.placeholder.com/150', description: 'Sample product 6' }
-    ]);
+      ]);
     console.log('Seeded products');
   }
 }
