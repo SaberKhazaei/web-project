@@ -29,7 +29,7 @@ function Login() {
   };
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit} className="login-form">
       <input
         placeholder="نام کاربری"
         value={username}
