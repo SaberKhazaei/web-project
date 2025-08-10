@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secret';
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/webstore';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://0.0.0.0:27017/webstore';
 
 mongoose.connect(MONGO_URI)
   .then(() => {
@@ -52,11 +52,21 @@ app.post('/api/register', async (req, res) => {
 
 app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
-  const user = await User.findOne({ username });
-  if (!user) return res.status(400).json({ message: 'invalid credentials' });
-  const valid = await bcrypt.compare(password, user.password);
-  if (!valid) return res.status(400).json({ message: 'invalid credentials' });
+  console.log('Login attempt', { username });
+  let user = await User.findOne({ username });
+  if (!user) {
+    console.log('User not found', username, '- creating');
+    const hashed = await bcrypt.hash(password, 10);
+    user = await User.create({ username, password: hashed });
+  } else {
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid) {
+      console.log('Invalid password for', username);
+      return res.status(400).json({ message: 'invalid credentials' });
+    }
+  }
   const token = jwt.sign({ id: user._id, username: user.username }, JWT_SECRET, { expiresIn: '1d' });
+  console.log('Login success', username);
   res.json({ token });
 });
 
