@@ -93,5 +93,22 @@ app.get('/api/products', async (req, res) => {
   res.json(products);
 });
 
+app.get('/api/products/:id', async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  if (!product) return res.status(404).json({ message: 'not found' });
+  res.json(product);
+});
+
+app.post('/api/cart', authMiddleware, async (req, res) => {
+  const { productId } = req.body;
+  const user = await User.findById(req.user.id);
+  if (!user) return res.status(404).json({ message: 'user not found' });
+  if (!user.cart.includes(productId)) {
+    user.cart.push(productId);
+    await user.save();
+  }
+  res.json({ message: 'added to cart' });
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
