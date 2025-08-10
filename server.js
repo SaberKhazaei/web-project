@@ -97,7 +97,6 @@ app.get('/api/products', async (req, res) => {
   res.json(products);
 });
 
-// Get a single product by id
 app.get('/api/products/:id', async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -108,7 +107,6 @@ app.get('/api/products/:id', async (req, res) => {
   }
 });
 
-// Add a product to the authenticated user's cart
 app.post('/api/cart', authMiddleware, async (req, res) => {
   const { productId } = req.body;
   if (!productId) return res.status(400).json({ message: 'productId required' });
@@ -118,13 +116,11 @@ app.post('/api/cart', authMiddleware, async (req, res) => {
   res.json({ message: 'added to cart' });
 });
 
-// Get the authenticated user's cart
 app.get('/api/cart', authMiddleware, async (req, res) => {
   const user = await User.findById(req.user.id).populate('cart');
   res.json(user.cart);
 });
 
-// Remove a product from the authenticated user's cart
 app.delete('/api/cart/:productId', authMiddleware, async (req, res) => {
   const user = await User.findById(req.user.id);
   const { productId } = req.params;
